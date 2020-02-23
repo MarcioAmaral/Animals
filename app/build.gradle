@@ -37,6 +37,7 @@ def rxJavaVersion = '2.1.1'
 def navVersion = '2.1.0-alpha05'
 def daggerVersion = '2.14.1'
 def mockitoVersion = '2.11.0'
+def preference_version = '1.1.0-rc01'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -62,6 +63,8 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glideVersion"
 
     implementation "com.android.support:palette-v7:$supportVersion"
+
+    implementation "androidx.preference:preference-ktx:$preference_version"
 
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"

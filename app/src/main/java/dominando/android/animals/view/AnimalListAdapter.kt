@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dominando.android.animals.R
 import dominando.android.animals.model.Animal
+import dominando.android.animals.util.getProgressDrawable
+import dominando.android.animals.util.loadImage
 import kotlinx.android.synthetic.main.item_animal.view.*
 
 class AnimalListAdapter(private val animalList: ArrayList<Animal>): RecyclerView.Adapter<AnimalListAdapter.AnimalViewHolder>() {
@@ -28,5 +30,6 @@ class AnimalListAdapter(private val animalList: ArrayList<Animal>): RecyclerView
 
     override fun onBindViewHolder(holder: AnimalViewHolder, position: Int) {
         holder.view.animalName.text = animalList[position].name
+        holder.view.animalImage.loadImage(animalList[position].imageUrl, getProgressDrawable(holder.view.context))
     }
 }
