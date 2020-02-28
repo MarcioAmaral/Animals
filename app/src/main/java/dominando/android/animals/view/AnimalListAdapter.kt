@@ -3,6 +3,7 @@ package dominando.android.animals.view
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import dominando.android.animals.R
 import dominando.android.animals.model.Animal
@@ -31,5 +32,9 @@ class AnimalListAdapter(private val animalList: ArrayList<Animal>): RecyclerView
     override fun onBindViewHolder(holder: AnimalViewHolder, position: Int) {
         holder.view.animalName.text = animalList[position].name
         holder.view.animalImage.loadImage(animalList[position].imageUrl, getProgressDrawable(holder.view.context))
+        holder.view.animalLayout.setOnClickListener {
+            val actio = ListFragmentDirections.actionDetail(animalList[position])
+            Navigation.findNavController(holder.view).navigate(actio)
+        }
     }
 }
