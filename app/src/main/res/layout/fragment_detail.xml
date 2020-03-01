@@ -6,12 +6,15 @@
         <variable
             name="animal"
             type="dominando.android.animals.model.Animal" />
+        <variable
+            name="palette"
+            type="dominando.android.animals.model.AnimalPalette" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/animalLayout"
+        android:background="@{palette.color}"
         tools:context=".view.DetailFragment"
         android:gravity="center_horizontal"
         android:orientation="vertical">

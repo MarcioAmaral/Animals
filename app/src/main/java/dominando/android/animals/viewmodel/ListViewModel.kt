@@ -1,9 +1,9 @@
 package dominando.android.animals.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import dominando.android.animals.di.*
 import dominando.android.animals.model.Animal
 import dominando.android.animals.model.AnimalApiService
 import dominando.android.animals.model.Apikey
@@ -12,6 +12,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 class ListViewModel(application: Application): AndroidViewModel(application) {
 
@@ -20,11 +21,23 @@ class ListViewModel(application: Application): AndroidViewModel(application) {
     val loading by lazy { MutableLiveData<Boolean>() }
     
     private val disposable = CompositeDisposable()
-    private val apiService = AnimalApiService()
 
-    private val prefs = SharedPreferencesHelper(getApplication())
+    @Inject
+    lateinit var apiService: AnimalApiService
+
+    @Inject
+    @field:TypeOfContext(CONTEXT_APP)
+    lateinit var prefs: SharedPreferencesHelper
+
 
     private var invalidApiKey = false
+
+    init {
+        DaggerViewModelComponent.builder()
+            .appModule(AppModule(getApplication()))
+            .build()
+            .inject(this)
+    }
 
     fun refresh() {
         loading.value = true

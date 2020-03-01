@@ -16,6 +16,7 @@ import com.bumptech.glide.request.transition.Transition
 import dominando.android.animals.R
 import dominando.android.animals.databinding.FragmentDetailBinding
 import dominando.android.animals.model.Animal
+import dominando.android.animals.model.AnimalPalette
 import dominando.android.animals.util.getProgressDrawable
 import dominando.android.animals.util.loadImage
 
@@ -64,6 +65,7 @@ class DetailFragment : Fragment() {
                         .generate() { palette ->
                             val intColor = palette?.lightMutedSwatch?.rgb ?: 0
                           //  dataBinding.animalLayout.setBackgroundColor(intColor)
+                            dataBinding.palette = AnimalPalette(intColor)
                         }
                 }
             })
